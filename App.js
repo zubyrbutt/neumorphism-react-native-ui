@@ -1,86 +1,210 @@
-import React from 'react';
-import {StyleSheet, View, Text, ScrollView, TextInput, Image} from 'react-native';
-import {Shadow, Neomorph, NeomorphBlur} from 'react-native-neomorph-shadows';
-import MaterialIcons from 'react-native-vector-icons/Feather'
-import  MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import  FontAwesome from 'react-native-vector-icons/FontAwesome'
+import React, { useState } from 'react';
+import { StyleSheet, View, Text, ScrollView, TextInput, Image, TouchableOpacityWithoutFeedback, TouchableOpacity } from 'react-native';
+import { Shadow, Neomorph, NeomorphBlur } from 'react-native-neomorph-shadows';
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
 const ExampleShadow = () => {
+    const [shadowColor, setShadowColor] = useState(true)
     return (
         <View style={styles.main}>
-            <ScrollView contentContainerStyle={styles.contentContainerStyle}>
-                <View style={styles.section}>
-                    <View style={styles.header}>
-                        <Neomorph style={styles.neomorph1}>
-                            <MaterialIcons name='menu' size={20} color='#91A1BD'/>
-                        </Neomorph>
-                        <Text style={{color: '#91A1BD'}}>Neumorphism</Text>
-                        <Neomorph style={styles.neomorph1}>
-                            <FontAwesome name='heart' size={20} color='#91A1BD'/>
-                        </Neomorph>
-                    </View>
 
-                    <View style={styles.divider}></View>
+            <View style={{ left: 10 }}>
+                <Neomorph
+                    style={{
+                        shadowRadius: 3,
+                        borderRadius: 25,
+                        backgroundColor: '#CCDEFA',
+                        width: 50,
+                        height: 50,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}
+                >
+                    <Neomorph
+                        inner
+                        style={{
+                            shadowRadius: 7,
+                            borderRadius: 40 / 2,
+                            backgroundColor: '#EF6000',
+                            width: 40,
+                            height: 40,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        }}
+                    >
+                        <TouchableOpacity activeOpacity={1} >
 
-                    <View style={styles.inputView}>
-                        <Neomorph style={styles.neomorphInput}>
-                            <TextInput placeholder='search' />
-                            <MaterialIcons name='search' size={20} color='#91A1BD'/>
-                        </Neomorph>
-                    </View>
+                            {shadowColor ?
 
-                    <View style={styles.divider}></View>
-                    <View style={styles.divider}></View>
+                                <Neomorph
+                                    style={{
+                                        shadowRadius: 11.5,
+                                        borderRadius: 35 / 2,
+                                        backgroundColor: '#CCDEFA',
+                                        width: 35,
+                                        height: 35,
+                                    }}
+                                >
+                                    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
 
-                    <View style={styles.UserContainer}>
-                        <Neomorph style={styles.neomorphUserContainer}>
-                            <Neomorph style={styles.userProfileneomorph}>
-                                <Image source={require('./src/assets/images/image.jpg')} style={{width:55,height:55, borderRadius: 40}} />
+                                        <Ionicons name='caret-back-sharp' size={20} color="#EF6000" />
+                                    </View>
                             </Neomorph>
-                            <View style={{left:20}}>
-                                <Text style={{color: '#91A1BD', fontWeight: 'bold'}}>Muhammad zubair</Text>
-                                <Text style={{color: '#91A1BD'}}>+923357604243</Text>
-                            </View>
-                            <View style={{left: 60}}>
-                                <MaterialCommunityIcons name='dots-vertical' size={20} color='#91A1BD'/>
-                            </View>
-                        </Neomorph>
-                    </View>
 
-                    <View style={styles.UserContainer}>
-                        <Neomorph style={styles.neomorphUserContainer}>
-                            <Neomorph style={styles.userProfileneomorph}>
-                                <Image source={require('./src/assets/images/image2.jpg')} style={{width:55,height:55, borderRadius: 40}} />
+                                :
+                                <Neomorph
+                                    style={{
+                                        shadowRadius: 11.5,
+                                        borderRadius: 50 / 2,
+                                        backgroundColor: '#CCDEFA',
+                                        width: 35,
+                                        height: 35,
+                                    }}
+                                >
+                                    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+
+                                        <Ionicons name='caret-back-sharp' size={20} color="#EF6000" />
+                                    </View>
                             </Neomorph>
-                            <View style={{left:20}}>
-                                <Text style={{color: '#91A1BD', fontWeight: 'bold'}}>Muhammad zubair</Text>
-                                <Text style={{color: '#91A1BD'}}>+923357604243</Text>
-                            </View>
-                            <View style={{left: 60}}>
-                                <MaterialCommunityIcons name='dots-vertical' size={20} color='#91A1BD'/>
-                            </View>
-                        </Neomorph>
-                    </View>
 
+                            }
+                        </TouchableOpacity>
+                    </Neomorph>
+                </Neomorph>
+            </View>
 
-                    <View style={styles.UserContainer}>
-                        <Neomorph style={styles.neomorphUserContainer}>
-                            <Neomorph style={styles.userProfileneomorph}>
-                                <Image source={require('./src/assets/images/image3.jpg')} style={{width:55,height:55, borderRadius: 40}} />
+            
+            <Neomorph
+                style={{
+                    shadowRadius: 3,
+                    borderRadius: 60,
+                    backgroundColor: '#CCDEFA',
+                    width: 120,
+                    height: 120,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                }}
+            >
+                <Neomorph
+                    inner
+                    style={{
+                        shadowRadius: 7,
+                        borderRadius: 60,
+                        backgroundColor: shadowColor ? "#EF6000" : "#1A863A",
+                        width: 100,
+                        height: 100,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}
+                >
+                    <TouchableOpacity activeOpacity={1} onPress={() => setShadowColor(!shadowColor)}>
+
+                        {shadowColor ?
+
+                            <Neomorph
+                                style={{
+                                    shadowRadius: 11.5,
+                                    borderRadius: 90 / 2,
+                                    backgroundColor: '#CCDEFA',
+                                    width: 90,
+                                    height: 90,
+                                }}
+                            >
+                                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+
+                                    <Ionicons name='play-sharp' size={30} color="#EF6000" />
+                                </View>
                             </Neomorph>
-                            <View style={{left:20}}>
-                                <Text style={{color: '#91A1BD', fontWeight: 'bold'}}>Muhammad zubair</Text>
-                                <Text style={{color: '#91A1BD'}}>+923357604243</Text>
-                            </View>
-                            <View style={{left: 60}}>
-                                <MaterialCommunityIcons name='dots-vertical' size={20} color='#91A1BD'/>
-                            </View>
-                        </Neomorph>
-                    </View>
+
+                            :
+                            <Neomorph
+                                style={{
+                                    shadowRadius: 11.5,
+                                    borderRadius: 90 / 2,
+                                    backgroundColor: '#CCDEFA',
+                                    width: 90,
+                                    height: 90,
+                                }}
+                            >
+                                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+
+                                    <Ionicons name='pause-sharp' size={30} color="#1A863A" />
+                                </View>
+                            </Neomorph>
+
+                        }
+                    </TouchableOpacity>
+                </Neomorph>
+            </Neomorph>
 
 
-                </View>
-            </ScrollView>
+
+            <View style={{ right: 10 }}>
+                <Neomorph
+                    style={{
+                        shadowRadius: 3,
+                        borderRadius: 25,
+                        backgroundColor: '#CCDEFA',
+                        width: 50,
+                        height: 50,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}
+                >
+                    <Neomorph
+                        inner
+                        style={{
+                            shadowRadius: 7,
+                            borderRadius: 40 / 2,
+                            backgroundColor: '#EF6000',
+                            width: 40,
+                            height: 40,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        }}
+                    >
+                        <TouchableOpacity activeOpacity={1}>
+
+                            {shadowColor ?
+
+                                <Neomorph
+                                    style={{
+                                        shadowRadius: 11.5,
+                                        borderRadius: 35 / 2,
+                                        backgroundColor: '#CCDEFA',
+                                        width: 35,
+                                        height: 35,
+                                    }}
+                                >
+                                    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+
+                                        <Ionicons name='caret-forward-sharp' size={20} color="#EF6000" />
+                                </View>
+                                </Neomorph>
+
+                                :
+                                <Neomorph
+                                    style={{
+                                        shadowRadius: 11.5,
+                                        borderRadius: 50 / 2,
+                                        backgroundColor: '#CCDEFA',
+                                        width: 35,
+                                        height: 35,
+                                    }}
+                                >
+                                    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+
+                                        <Ionicons name='caret-forward-sharp' size={20} color="#EF6000" />
+                                </View>
+                                </Neomorph>
+
+                            }
+                        </TouchableOpacity>
+                    </Neomorph>
+                </Neomorph>
+            </View>
         </View>
     );
 };
@@ -88,7 +212,12 @@ const ExampleShadow = () => {
 const styles = StyleSheet.create({
     main: {
         flex: 1,
-        backgroundColor: '#CCDEFA',
+        backgroundColor: '#DFD9D2',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        flexDirection: 'row',
+
+
     },
     contentContainerStyle: {
         //paddingTop: 60,
@@ -144,14 +273,14 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         flexDirection: 'row',
-        paddingHorizontal:20
+        paddingHorizontal: 20
 
     },
-    UserContainer:{
+    UserContainer: {
         alignItems: 'center',
         marginBottom: 20
     },
-    neomorphUserContainer:{
+    neomorphUserContainer: {
         shadowRadius: 10,
         borderRadius: 8,
         shadowOffset: {
@@ -163,11 +292,11 @@ const styles = StyleSheet.create({
         width: 300,
         height: 90,
         opacity: 1,
-        paddingHorizontal:20,
+        paddingHorizontal: 20,
         flexDirection: 'row',
         alignItems: 'center'
     },
-    userProfileneomorph:{
+    userProfileneomorph: {
         shadowRadius: 6,
         borderRadius: 30,
         shadowOffset: {
