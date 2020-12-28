@@ -36,8 +36,6 @@ const ExampleShadow = () => {
                     >
                         <TouchableOpacity activeOpacity={1} >
 
-                            {shadowColor ?
-
                                 <Neomorph
                                     style={{
                                         shadowRadius: 11.5,
@@ -49,27 +47,9 @@ const ExampleShadow = () => {
                                 >
                                     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
 
-                                        <Ionicons name='caret-back-sharp' size={20} color="#EF6000" />
+                                    <Ionicons name='play-back-sharp' size={18} color="#EF6000" />
                                     </View>
                             </Neomorph>
-
-                                :
-                                <Neomorph
-                                    style={{
-                                        shadowRadius: 11.5,
-                                        borderRadius: 50 / 2,
-                                        backgroundColor: '#CCDEFA',
-                                        width: 35,
-                                        height: 35,
-                                    }}
-                                >
-                                    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-
-                                        <Ionicons name='caret-back-sharp' size={20} color="#EF6000" />
-                                    </View>
-                            </Neomorph>
-
-                            }
                         </TouchableOpacity>
                     </Neomorph>
                 </Neomorph>
@@ -167,7 +147,7 @@ const ExampleShadow = () => {
                     >
                         <TouchableOpacity activeOpacity={1}>
 
-                            {shadowColor ?
+
 
                                 <Neomorph
                                     style={{
@@ -180,27 +160,12 @@ const ExampleShadow = () => {
                                 >
                                     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
 
-                                        <Ionicons name='caret-forward-sharp' size={20} color="#EF6000" />
+                                    <Ionicons name='play-forward-sharp' size={18} color="#EF6000" />
                                 </View>
                                 </Neomorph>
 
-                                :
-                                <Neomorph
-                                    style={{
-                                        shadowRadius: 11.5,
-                                        borderRadius: 50 / 2,
-                                        backgroundColor: '#CCDEFA',
-                                        width: 35,
-                                        height: 35,
-                                    }}
-                                >
-                                    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
 
-                                        <Ionicons name='caret-forward-sharp' size={20} color="#EF6000" />
-                                </View>
-                                </Neomorph>
 
-                            }
                         </TouchableOpacity>
                     </Neomorph>
                 </Neomorph>
@@ -212,7 +177,7 @@ const ExampleShadow = () => {
 const styles = StyleSheet.create({
     main: {
         flex: 1,
-        backgroundColor: '#DFD9D2',
+        backgroundColor: '#CCDEFA',
         alignItems: 'center',
         justifyContent: 'space-around',
         flexDirection: 'row',
