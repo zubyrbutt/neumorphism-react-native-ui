@@ -1,16 +1,74 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Text, ScrollView, TextInput, Image, TouchableOpacityWithoutFeedback, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, View, Text, Dimensions, StatusBar, Image, TouchableOpacityWithoutFeedback, TouchableOpacity } from 'react-native';
 import { Shadow, Neomorph, NeomorphBlur } from 'react-native-neomorph-shadows';
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import TypeWriterComponent from './src/Components/TypeWriterComponent';
+import { Audio, Video } from 'expo-av';
+import AudioData from './src/data/audioData'
+
+const { width } = Dimensions.get("screen")
+
+const Song = {
+    id: '1',
+    song: require('./src/assets/audio/mulk.mp3'),
+};
 
 const ExampleShadow = () => {
     const [shadowColor, setShadowColor] = useState(true)
+    const [startTyping, setStartTyping] = useState(false)
+    //for audio
+    const [sound, setSound] = useState(null);
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [duration, setDuration] = useState(null);
+    const [position, setPosition] = useState(null);
+    const [audioIndex, setAudioIndex] = useState(0);
+
+    const onPlaybackStatusUpdate = (status) => {
+        setIsPlaying(status.isPlaying);
+        setDuration(status.durationMillis);
+        setPosition(status.positionMillis);
+        console.log(status);
+    };
+    console.log("---------------Audio--------------------", AudioData[0].AudioFile)
+    const playCurrentSong = async () => {
+        if (sound) {
+            await sound.unloadAsync();
+        }
+        const { sound: newSound } = await Audio.Sound.createAsync(
+            require('./src/assets/audio/mulk.mp3'),
+            { shouldPlay: isPlaying },
+            onPlaybackStatusUpdate
+        );
+        setSound(newSound);
+    };
+
+    useEffect(() => {
+        playCurrentSong();
+    }, []);
+
+    const onPlayPausePress = async () => {
+        if (!sound) {
+            return;
+        }
+        if (isPlaying) {
+            await sound.pauseAsync();
+        } else {
+            await sound.playAsync();
+        }
+    };
+    console.log(startTyping)
     return (
         <View style={styles.main}>
-
-            <View style={{ left: 10 }}>
+            <StatusBar hidden />
+            <TypeWriterComponent startTyping={startTyping} />
+         
+            <View style={{ position: 'absolute', bottom: 10, left: 0, right: 0 }}>
+                <View style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'space-around',
+                }}>
+                    <View style={{ left: 10, }}>
                 <Neomorph
                     style={{
                         shadowRadius: 3,
@@ -79,7 +137,7 @@ const ExampleShadow = () => {
                         alignItems: 'center',
                     }}
                 >
-                    <TouchableOpacity activeOpacity={1} onPress={() => setShadowColor(!shadowColor)}>
+                            <TouchableOpacity activeOpacity={1} onPress={() => { onPlayPausePress(), setStartTyping(!startTyping), setShadowColor(!shadowColor) }}>
 
                         {shadowColor ?
 
@@ -162,13 +220,12 @@ const ExampleShadow = () => {
 
                                     <Ionicons name='play-forward-sharp' size={18} color="#EF6000" />
                                 </View>
-                                </Neomorph>
-
-
-
+                                    </Neomorph>
                         </TouchableOpacity>
                     </Neomorph>
                 </Neomorph>
+                </View>
+            </View>
             </View>
         </View>
     );
@@ -178,11 +235,21 @@ const styles = StyleSheet.create({
     main: {
         flex: 1,
         backgroundColor: '#CCDEFA',
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        flexDirection: 'row',
-
-
+       
+    },
+    textContainer: {
+        alignSelf: 'center',
+        width: width - 50,
+        marginTop: width * 0.3,
+        //backgroundColor: 'white'
+    },
+    textStyle: {
+        fontSize: 25,
+        // textShadowColor: 'rgba(0, 0, 0, 0.2)',
+        // textShadowOffset: { width: -1, height: 1 },
+        // textShadowRadius: 10,
+        fontWeight: 'bold',
+        color: '#788491'
     },
     contentContainerStyle: {
         //paddingTop: 60,
